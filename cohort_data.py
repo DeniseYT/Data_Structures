@@ -16,10 +16,18 @@ def all_houses(filename):
     """
 
     houses = set()
+    cohort_data = open(filename)
 
-    # TODO: replace this with your code
+    for line in cohort_data:
+      
+      house = line.rstrip().split("|")[2]
+
+      if house:
+        houses.add(house)
 
     return houses
+
+all_houses("cohort_data.txt")
 
 
 def students_by_cohort(filename, cohort='All'):
@@ -51,10 +59,18 @@ def students_by_cohort(filename, cohort='All'):
     """
 
     students = []
+    students_data = open(filename)
 
-    # TODO: replace this with your code
+    for line in students_data:
+      students_list = line.rstrip().split("|")
+      full_name = students_list[0] + " " + students_list[1]
+      students_cohort = students_list[4]
+      if cohort != "I" or cohort != "G" or cohort == "All" or students_cohort == cohort:
+        students.append(full_name)
+    
+    return students
 
-    return sorted(students)
+students_by_cohort("cohort_data.txt")
 
 
 def all_names_by_house(filename):
