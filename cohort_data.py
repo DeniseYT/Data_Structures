@@ -33,6 +33,7 @@ all_houses("cohort_data.txt")
 def students_by_cohort(filename, cohort='All'):
     """Return a list of students' full names by cohort.
 
+
     Names are sorted in alphabetical order. If a cohort isn't
     given, return a list of all students. For example:
       >>> students_by_cohort('cohort_data.txt')
@@ -68,12 +69,14 @@ def students_by_cohort(filename, cohort='All'):
       if cohort != "I" or cohort != "G" or cohort == "All" or students_cohort == cohort:
         students.append(full_name)
     
-    return students
+    return sorted(students)
 
-students_by_cohort("cohort_data.txt")
+students_by_cohort("cohort_data.txt", cohort = "Winter 2016")
 
 
 def all_names_by_house(filename):
+
+
     """Return a list that contains rosters for all houses, ghosts, instructors.
 
     Rosters appear in this order:
@@ -103,6 +106,9 @@ def all_names_by_house(filename):
     Return:
       - list[list]: a list of lists
     """
+    
+    all_names = []
+    students_data = open(filename)
 
     dumbledores_army = []
     gryffindor = []
@@ -112,9 +118,44 @@ def all_names_by_house(filename):
     ghosts = []
     instructors = []
 
-    # TODO: replace this with your code
+    for line in students_data:
+        students_list = line.rstrip().split("|")
+        full_name = students_list[0] + " " + students_list[1]
+        house = students_list[2]
 
-    return []
+        if house == "Dumbledore's Army":
+          dumbledores_army.append(full_name)
+          dumbledores_army_sort = sorted(dumbledores_army)
+
+        elif house == "Gryffindor":
+          gryffindor.append(full_name)
+          gryffindor_sort = sorted(gryffindor)
+
+        elif house == "Hufflepuff":
+          hufflepuff.append(full_name)
+          hufflepuff_sort = sorted(hufflepuff)
+
+        elif house == "Ravenclaw":
+          ravenclaw.append(full_name)
+          ravenclaw_sort = sorted(ravenclaw)
+
+        elif house == "Slytherin":
+          slytherin.append(full_name)
+          slytherin_sort = sorted(slytherin)
+
+        elif house == "G":
+          ghosts.append(full_name)
+          ghosts_sort = sorted(ghosts)
+
+        elif house == "I":
+          instructors.append(full_name)
+          instructors_sort = sorted(instructors)
+    
+    all_names.append("dumbledores_army_sort" + "gryffindor_sort" + "hufflepuff_sort" + "ravenclaw_sort" + "slytherin_sort" + "ghosts_sort" + "instructors_sort")
+        
+    return sorted(all_names)
+
+all_names_by_house("cohort_data.txt")
 
 
 def all_data(filename):
@@ -137,10 +178,15 @@ def all_data(filename):
     """
 
     all_data = []
+    students_data = open(filename)
 
-    # TODO: replace this with your code
+    for line in students_data:
+      students_list = line.rstrip().split("|")
+      all_data.append(students_list)
 
     return all_data
+
+all_data("cohort_data.txt")
 
 
 def get_cohort_for(filename, name):
@@ -164,7 +210,16 @@ def get_cohort_for(filename, name):
       - str: the person's cohort or None
     """
 
-    # TODO: replace this with your code
+    students_data = open(filename)
+
+    for line in students_data:
+      students_list = line.rstrip().split("|")
+      # name = students_list[0] + " " + students_list[1]
+      cohort = students_list[4]
+    
+    return cohort
+
+get_cohort_for("cohort_data.txt", "Harry Potter")
 
 
 def find_duped_last_names(filename):
@@ -180,8 +235,18 @@ def find_duped_last_names(filename):
     Return:
       - set[str]: a set of strings
     """
+    students_last_name = set()
+    students_data = open(filename)
 
-    # TODO: replace this with your code
+    for line in students_data:
+      students_list = line.rstrip().split("|")
+      last_name = students_list[1]
+      students_last_name.add(last_name)
+    
+    return students_last_name
+
+find_duped_last_names("cohort_data.txt")
+
 
 
 def get_housemates_for(filename, name):
