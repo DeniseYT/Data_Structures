@@ -261,7 +261,21 @@ def get_housemates_for(filename, name):
     {'Angelina Johnson', ..., 'Seamus Finnigan'}
     """
 
-    # TODO: replace this with your code
+    housemates = set()
+    students_data = open(filename)
+
+    for line in students_data:
+      students_list = line.rstrip().split("|")
+      house = students_list[2]
+      full_name = students_list[0] + " " + students_list[1]
+      cohort = students_list[4]
+
+      if (full_name, cohort) == 
+
+
+
+
+
 
 
 ##############################################################################
