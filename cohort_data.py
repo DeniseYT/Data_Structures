@@ -270,7 +270,11 @@ def get_housemates_for(filename, name):
       full_name = students_list[0] + " " + students_list[1]
       cohort = students_list[4]
 
-      if (full_name, cohort) == 
+      if (full_name, cohort) ==  
+    
+    return 
+
+get_housemates_for("cohort_data.txt", )
 
 
 
